@@ -2,30 +2,39 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>イラストレーターのホームページ</title>
+  <title>イラストレーターのポートフォリオ</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>イラストレーターのポートフォリオ</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">ホーム</a></li>
-        <li><a href="blog.html">ブログ</a></li>
-        <li><a href="support.html">支援</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <h1>イラストレーターのポートフォリオ</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="support.html">支援</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main>
     <section class="gallery">
       <h2>作品ギャラリー</h2>
-      <div class="gallery-container">
-        <!-- ここに複数枚の画像を追加 -->
-        <img src="images/art1.jpg" alt="作品1">
-        <img src="images/art2.jpg" alt="作品2">
-        <img src="images/art3.jpg" alt="作品3">
-        <!-- さらに画像を追加可能 -->
+      <!-- サムネイルグリッド -->
+      <div class="thumbnail-grid">
+        <!-- 各サムネイルはクリックで指定の大きい画像URLへ遷移 -->
+        <a href="https://yourdomain.com/images/art1_large.jpg" target="_blank">
+          <img src="images/art1_thumb.jpg" alt="作品1">
+        </a>
+        <a href="https://yourdomain.com/images/art2_large.jpg" target="_blank">
+          <img src="images/art2_thumb.jpg" alt="作品2">
+        </a>
+        <a href="https://yourdomain.com/images/art3_large.jpg" target="_blank">
+          <img src="images/art3_thumb.jpg" alt="作品3">
+        </a>
+        <!-- 必要に応じてサムネイルを追加 -->
       </div>
     </section>
   </main>
