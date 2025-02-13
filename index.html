@@ -1,313 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- 文字コードとレスポンシブ対応のためのビューポート設定 -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO対策用のメタタグ -->
-  <!-- サイトの概要説明（description）、キーワード、検索エンジンへの指示（robots）を記述 -->
-  <meta name="description" content="最新のイベント情報とホテル予約情報をお届け。agoda、booking、expedia、klook、kkdayなどのアフィリエイトでお得な情報を提供します。">
-  <meta name="keywords" content="イベント, ホテル予約, agoda, booking, expedia, klook, kkday, アフィリエイト, SEO">
-  <meta name="robots" content="index, follow">
-  
-  <!-- タイトルタグ（検索結果やブラウザタブに表示される） -->
-  <title>イベント＆ホテル予約情報サイト | 最新情報をあなたに</title>
-  
-  <!-- CSSによるサイトデザイン -->
-  <style>
-    /* --------------------------------------------
-       CSSリセット：ブラウザごとの初期スタイルを統一するため
-    --------------------------------------------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* --------------------------------------------
-       ボディ基本設定：フォント、背景色、文字色、行間など
-    --------------------------------------------- */
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif; /* モダンなフォント */
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    /* --------------------------------------------
-       ヘッダー：サイトタイトルとナビゲーション
-    --------------------------------------------- */
-    header {
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 20px;
-    }
-    header .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    /* --------------------------------------------
-       ナビゲーションメニュー：ユーザーがサイト内を移動しやすいように
-    --------------------------------------------- */
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #007BFF; /* ホバー時の色変更で視認性向上 */
-    }
-
-    /* --------------------------------------------
-       ヒーローセクション：サイトの魅力を一目で伝える大きなビジュアル
-    --------------------------------------------- */
-    .hero {
-      background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover; 
-      /* サンプル画像（実際の画像に差し替えてください） */
-      color: #fff;
-      text-align: center;
-      padding: 100px 20px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 1.5rem;
-    }
-
-    /* --------------------------------------------
-       メインコンテンツ：各セクションの情報表示
-    --------------------------------------------- */
-    main {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-
-    /* --------------------------------------------
-       カードレイアウト：イベント、ホテル、ブログ記事などをカード形式で表示
-    --------------------------------------------- */
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      width: 300px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ホバー時の影効果で浮き上がり感を演出 */
-    }
-    .card img {
-      width: 100%;
-      display: block;
-    }
-    .card-content {
-      padding: 15px;
-    }
-    .card-content h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .card-content p {
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-    .card-content a {
-      text-decoration: none;
-      color: #007BFF;
-      font-weight: bold;
-    }
-
-    /* --------------------------------------------
-       フッター：著作権表示やアフィリエイトに関する注意書き
-    --------------------------------------------- */
-    footer {
-      background-color: #ffffff;
-      border-top: 1px solid #ddd;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    /* --------------------------------------------
-       レスポンシブデザイン：画面サイズが小さいデバイス向けの調整
-    --------------------------------------------- */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1.2rem;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
-
-  <!-- --------------------------------------------
-       構造化データ：JSON-LD形式でSEO強化のため、検索エンジンにサイト情報を伝える
-  --------------------------------------------- -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "イベント＆ホテル予約情報サイト",
-    "url": "https://yourdomain.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://yourdomain.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  <title>イラストレーターのホームページ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
 <body>
-  <!-- ヘッダーセクション：サイトタイトルとナビゲーションメニューを配置 -->
   <header>
-    <div class="container">
-      <h1>イベント＆ホテル予約情報サイト</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">ホーム</a></li>
-          <li><a href="#events">イベント情報</a></li>
-          <li><a href="#hotels">ホテル予約</a></li>
-          <li><a href="#blog">ブログ</a></li>
-          <li><a href="#contact">お問い合わせ</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>イラストレーターのポートフォリオ</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="support.html">支援</a></li>
+      </ul>
+    </nav>
   </header>
-
-  <!-- ヒーローセクション：サイトの魅力的なメッセージを大きなビジュアルとともに表示 -->
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>最高のイベントとホテル情報をお届け</h1>
-      <p>最新の情報で、あなたの旅をより豊かに</p>
-    </div>
-  </section>
-
-  <!-- メインコンテンツセクション -->
   <main>
-    <!-- イベント情報セクション -->
-    <section id="events">
-      <h2 class="section-title">注目のイベント</h2>
-      <div class="cards">
-        <!-- イベントカード1 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="イベント1の画像">
-          <div class="card-content">
-            <h2>イベントタイトル1</h2>
-            <p>イベントの概要をここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <!-- アフィリエイトリンクに置き換えてください -->
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- イベントカード2 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="イベント2の画像">
-          <div class="card-content">
-            <h2>イベントタイトル2</h2>
-            <p>イベントの概要をここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- 必要に応じて、他のイベントカードを追加可能 -->
-      </div>
-    </section>
-
-    <!-- ホテル予約情報セクション -->
-    <section id="hotels" style="margin-top: 60px;">
-      <h2 class="section-title">おすすめホテル予約</h2>
-      <div class="cards">
-        <!-- ホテルカード1 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="ホテル1の画像">
-          <div class="card-content">
-            <h2>ホテル名1</h2>
-            <p>ホテルの特徴やメリットをここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- ホテルカード2 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="ホテル2の画像">
-          <div class="card-content">
-            <h2>ホテル名2</h2>
-            <p>ホテルの特徴やメリットをここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- 必要に応じて、他のホテルカードを追加可能 -->
-      </div>
-    </section>
-
-    <!-- ブログ記事セクション -->
-    <section id="blog" style="margin-top: 60px;">
-      <h2 class="section-title">最新記事</h2>
-      <div class="cards">
-        <!-- ブログ記事カード1 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="記事1の画像">
-          <div class="card-content">
-            <h2>記事タイトル1</h2>
-            <p>記事の概要をここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- ブログ記事カード2 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" alt="記事2の画像">
-          <div class="card-content">
-            <h2>記事タイトル2</h2>
-            <p>記事の概要をここに記述。詳細情報は以下のリンクからご確認ください。</p>
-            <a href="https://affiliate-link.com">詳細を見る</a>
-          </div>
-        </div>
-        <!-- 必要に応じて、他のブログ記事カードを追加可能 -->
-      </div>
-    </section>
-
-    <!-- お問い合わせセクション -->
-    <section id="contact" style="margin-top: 60px;">
-      <h2 class="section-title">お問い合わせ</h2>
-      <div style="text-align: center;">
-        <!-- お問い合わせフォームやメールリンクの設置（ユーザーが簡単に連絡できるように） -->
-        <p>ご質問やご意見がございましたら、<a href="mailto:info@yourdomain.com">info@yourdomain.com</a> までご連絡ください。</p>
+    <section class="gallery">
+      <h2>作品ギャラリー</h2>
+      <div class="gallery-container">
+        <!-- ここに複数枚の画像を追加 -->
+        <img src="images/art1.jpg" alt="作品1">
+        <img src="images/art2.jpg" alt="作品2">
+        <img src="images/art3.jpg" alt="作品3">
+        <!-- さらに画像を追加可能 -->
       </div>
     </section>
   </main>
-
-  <!-- フッターセクション：著作権表示とアフィリエイトに関する注意書きを記述 -->
   <footer>
-    <p>&copy; 2025 イベント＆ホテル予約情報サイト. All Rights Reserved.</p>
-    <p>本サイトはアフィリエイトサイトです。リンク先での購入により、当サイトに報酬が発生する場合があります。</p>
+    <p>&copy; 2025 イラストレーターの名前</p>
   </footer>
 </body>
 </html>
