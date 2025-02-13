@@ -1,45 +1,51 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>イラストレーターのポートフォリオ</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
 </head>
 <body>
   <header>
-    <div class="header-container">
-      <h1>イラストレーターのポートフォリオ</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="blog.html">ブログ</a></li>
-          <li><a href="support.html">支援</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>イラストレーターのポートフォリオ</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="admin.html">管理画面</a></li>
+      </ul>
+    </nav>
   </header>
   <main>
     <section class="gallery">
       <h2>作品ギャラリー</h2>
-      <!-- サムネイルグリッド -->
-      <div class="thumbnail-grid">
-        <!-- 各サムネイルはクリックで指定の大きい画像URLへ遷移 -->
-        <a href="https://yourdomain.com/images/art1_large.jpg" target="_blank">
-          <img src="images/art1_thumb.jpg" alt="作品1">
-        </a>
-        <a href="https://yourdomain.com/images/art2_large.jpg" target="_blank">
-          <img src="images/art2_thumb.jpg" alt="作品2">
-        </a>
-        <a href="https://yourdomain.com/images/art3_large.jpg" target="_blank">
-          <img src="images/art3_thumb.jpg" alt="作品3">
-        </a>
-        <!-- 必要に応じてサムネイルを追加 -->
+      <div id="thumbnailGrid" class="thumbnail-grid">
+        <!-- JavaScriptで gallery.json の内容からサムネイルを生成 -->
       </div>
     </section>
   </main>
   <footer>
     <p>&copy; 2025 イラストレーターの名前</p>
   </footer>
+  <script>
+    async function loadGallery() {
+      const response = await fetch('/gallery.json');
+      if(response.ok) {
+        const gallery = await response.json();
+        const grid = document.getElementById('thumbnailGrid');
+        gallery.reverse().forEach(img => {
+          const a = document.createElement('a');
+          a.href = img.original; // クリック時に元画像URLへ遷移
+          a.target = '_blank';
+          const image = document.createElement('img');
+          image.src = img.thumb;
+          image.alt = "作品";
+          a.appendChild(image);
+          grid.appendChild(a);
+        });
+      }
+    }
+    loadGallery();
+  </script>
 </body>
 </html>
