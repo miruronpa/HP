@@ -1,0 +1,67 @@
+<!-- public/admin.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>管理画面 - イラスト管理パネル</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>管理画面</h1>
+  </header>
+  <main>
+    <section>
+      <h2>画像アップロード</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">アップロード</button>
+      </form>
+      <div id="uploadStatus"></div>
+    </section>
+    <section>
+      <h2>アップロード済み画像一覧</h2>
+      <div id="galleryList"></div>
+    </section>
+  </main>
+  <script>
+    // アップロードフォーム送信処理
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      const fileInput = this.elements['image'];
+      if(fileInput.files.length === 0) return;
+      formData.append('image', fileInput.files[0]);
+
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      const statusDiv = document.getElementById('uploadStatus');
+      if(result.success) {
+        statusDiv.textContent = 'アップロード成功！';
+        loadGallery(); // ギャラリーを再読み込み
+      } else {
+        statusDiv.textContent = 'アップロード失敗: ' + result.error;
+      }
+    });
+
+    // gallery.json からアップロード済み画像一覧を読み込み表示
+    async function loadGallery() {
+      const response = await fetch('/gallery.json');
+      if(response.ok) {
+        const gallery = await response.json();
+        const galleryList = document.getElementById('galleryList');
+        galleryList.innerHTML = '';
+        gallery.reverse().forEach(img => {
+          const div = document.createElement('div');
+          div.innerHTML = `<img src="${img.thumb}" alt="サムネイル">`;
+          galleryList.appendChild(div);
+        });
+      }
+    }
+    loadGallery();
+  </script>
+</body>
+</html>
